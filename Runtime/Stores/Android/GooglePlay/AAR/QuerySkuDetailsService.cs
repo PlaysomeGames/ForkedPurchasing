@@ -97,14 +97,7 @@ namespace UnityEngine.Purchasing
             GoogleBillingResult billingResult = new GoogleBillingResult(javaBillingResult);
             if (billingResult.responseCode == BillingClientResponseEnum.OK())
             {
-                AddToQueriedSkuDetails(skuDetails);
-            }
-
-            if (m_NumberReceivedCallbacks >= k_RequiredNumberOfCallbacks)
-            {
-                m_GoogleCachedQuerySkuDetailsService.AddCachedQueriedSkus(m_QueriedSkuDetails);
-                onSkuDetailsResponse(m_QueriedSkuDetails);
-                Clear();
+                onSkuDetailsResponse(skuDetails);
             }
         }
 
