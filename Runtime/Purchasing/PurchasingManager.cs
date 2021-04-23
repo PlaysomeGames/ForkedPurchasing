@@ -172,7 +172,7 @@ namespace UnityEngine.Purchasing
         {
             if (description != null)
             {
-                var product = products.WithStoreSpecificID(description.productId);
+                var product = products.WithID(description.productId);
                 if (null == product)
                 {
                     m_Logger.LogFormat(LogType.Error, "Failed to purchase unknown product {0}", "productId:" + description.productId + " reason:" + description.reason + " message:" + description.message);
