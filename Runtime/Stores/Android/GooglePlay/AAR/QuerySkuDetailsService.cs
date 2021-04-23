@@ -49,7 +49,7 @@ namespace UnityEngine.Purchasing
         public void QueryAsyncSku(ReadOnlyCollection<ProductDefinition> products, Action<List<AndroidJavaObject>> onSkuDetailsResponse)
         {
             QueryInAppsAsync(products, onSkuDetailsResponse);
-            QuerySubsAsync(products, onSkuDetailsResponse);
+            //QuerySubsAsync(products, onSkuDetailsResponse);
         }
 
         void QueryInAppsAsync(ReadOnlyCollection<ProductDefinition> products, Action<List<AndroidJavaObject>> onSkuDetailsResponse)
