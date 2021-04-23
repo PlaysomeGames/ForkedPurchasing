@@ -40,7 +40,7 @@ namespace UnityEngine.Purchasing
             {
                 m_GooglePurchaseCallback.OnPurchaseFailed(
                     new PurchaseFailureDescription(
-                        productToBuy.id,
+                        productToBuy.storeSpecificId,
                         PurchaseFailureReason.ProductUnavailable,
                         "SKU does not exist in the store."
                     )
