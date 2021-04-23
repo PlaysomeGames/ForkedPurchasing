@@ -23,7 +23,7 @@ namespace UnityEngine.Purchasing
 
         IGoogleBillingClient m_BillingClient;
         IGoogleCachedQuerySkuDetailsService m_GoogleCachedQuerySkuDetailsService;
-        const int k_RequiredNumberOfCallbacks = 2;
+        const int k_RequiredNumberOfCallbacks = 1;
         int m_NumberReceivedCallbacks = 0;
         List<AndroidJavaObject> m_QueriedSkuDetails = new List<AndroidJavaObject>();
         internal QuerySkuDetailsService(IGoogleBillingClient billingClient, IGoogleCachedQuerySkuDetailsService googleCachedQuerySkuDetailsService)
@@ -97,7 +97,14 @@ namespace UnityEngine.Purchasing
             GoogleBillingResult billingResult = new GoogleBillingResult(javaBillingResult);
             if (billingResult.responseCode == BillingClientResponseEnum.OK())
             {
-                onSkuDetailsResponse(new List<AndroidJavaObject>{ skuDetails });
+                AddToQueriedSkuDetails(skuDetails);
+            }
+
+            if (m_NumberReceivedCallbacks >= k_RequiredNumberOfCallbacks)
+            {
+                m_GoogleCachedQuerySkuDetailsService.AddCachedQueriedSkus(m_QueriedSkuDetails);
+                onSkuDetailsResponse(m_QueriedSkuDetails);
+                Clear();
             }
         }
 
