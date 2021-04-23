@@ -58,6 +58,11 @@ namespace UnityEngine.Purchasing
                 .Where(product => product.type != ProductType.Subscription)
                 .Select(product => product.storeSpecificId)
                 .ToList();
+            Debug.LogWarning("SKUs");
+            foreach (var sku in skus)
+            {
+                Debug.LogWarning(sku);
+            }
             QuerySkuDetails(skus, k_InApp, onSkuDetailsResponse);
         }
 
@@ -77,7 +82,11 @@ namespace UnityEngine.Purchasing
             skuDetailsParamsBuilder = skuDetailsParamsBuilder.Call<AndroidJavaObject>("setType", type);
 
             SkuDetailsResponseListener listener = new SkuDetailsResponseListener((billingResult, skuDetails) => ConsolidateOnSkuDetailsReceived(billingResult, skuDetails, onSkuDetailsResponse));
-
+            Debug.LogWarning("SKUs going to billing client");
+            foreach (var sku in skus)
+            {
+                Debug.LogWarning(sku);
+            }
             m_BillingClient.QuerySkuDetailsAsync(skuDetailsParamsBuilder, listener);
         }
 
