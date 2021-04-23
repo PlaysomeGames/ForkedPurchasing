@@ -57,6 +57,7 @@ namespace UnityEngine.Purchasing
                 return;
             }
 
+            m_Logger.Log("Product " + product.definition.storeSpecificId);
             m_Store.Purchase(product.definition, developerPayload);
             m_Logger.LogFormat(LogType.Log, "purchase({0})", product.definition.id);
         }
