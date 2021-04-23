@@ -97,7 +97,7 @@ namespace UnityEngine.Purchasing
             GoogleBillingResult billingResult = new GoogleBillingResult(javaBillingResult);
             if (billingResult.responseCode == BillingClientResponseEnum.OK())
             {
-                onSkuDetailsResponse(skuDetails);
+                onSkuDetailsResponse(new List<AndroidJavaObject>{ skuDetails });
             }
         }
 
