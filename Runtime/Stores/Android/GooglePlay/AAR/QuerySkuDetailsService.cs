@@ -98,11 +98,33 @@ namespace UnityEngine.Purchasing
             if (billingResult.responseCode == BillingClientResponseEnum.OK())
             {
                 AddToQueriedSkuDetails(skuDetails);
+                Debug.LogWarning("Got response code ok and added skus")
+            }
+            else if (billingResult.responseCode == BillingClientResponseEnum.USER_CANCELED())
+            {
+                Debug.LogWarning("USER CANCELLEd")
+            }
+            else if (billingResult.responseCode == BillingClientResponseEnum.SERVICE_UNAVAILABLE())
+            {
+                Debug.LogWarning("SERVICE UNAVAILABLE");
+            }
+            else if (billingResult.responseCode == BillingClientResponseEnum.ITEM_ALREADY_OWNED())
+            {
+                Debug.LogWarning("ITEM ALREADY OWNED")
+            }
+            else
+            {
+                Debug.LogWarning("Response code " + billingResult.responseCode);
             }
 
             if (m_NumberReceivedCallbacks >= k_RequiredNumberOfCallbacks)
             {
                 m_GoogleCachedQuerySkuDetailsService.AddCachedQueriedSkus(m_QueriedSkuDetails);
+                Debug.LogWarning("triggering callback");
+                foreach (var details in m_QueriedSkuDetails)
+                {
+                    Debug.LogWarning("Sku " + sku.Call<string>("getSku"));
+                }
                 onSkuDetailsResponse(m_QueriedSkuDetails);
                 Clear();
             }
