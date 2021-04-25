@@ -123,7 +123,7 @@ namespace UnityEngine.Purchasing
                 Debug.LogWarning("triggering callback");
                 foreach (var details in m_QueriedSkuDetails)
                 {
-                    Debug.LogWarning("Sku " + sku.Call<string>("getSku"));
+                    Debug.LogWarning("Sku " + details.Call<string>("getSku"));
                 }
                 onSkuDetailsResponse(m_QueriedSkuDetails);
                 Clear();
