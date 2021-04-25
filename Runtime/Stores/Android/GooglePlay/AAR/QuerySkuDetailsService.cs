@@ -98,11 +98,11 @@ namespace UnityEngine.Purchasing
             if (billingResult.responseCode == BillingClientResponseEnum.OK())
             {
                 AddToQueriedSkuDetails(skuDetails);
-                Debug.LogWarning("Got response code ok and added skus")
+                Debug.LogWarning("Got response code ok and added skus");
             }
             else if (billingResult.responseCode == BillingClientResponseEnum.USER_CANCELED())
             {
-                Debug.LogWarning("USER CANCELLEd")
+                Debug.LogWarning("USER CANCELLEd");
             }
             else if (billingResult.responseCode == BillingClientResponseEnum.SERVICE_UNAVAILABLE())
             {
@@ -110,7 +110,7 @@ namespace UnityEngine.Purchasing
             }
             else if (billingResult.responseCode == BillingClientResponseEnum.ITEM_ALREADY_OWNED())
             {
-                Debug.LogWarning("ITEM ALREADY OWNED")
+                Debug.LogWarning("ITEM ALREADY OWNED");
             }
             else
             {
