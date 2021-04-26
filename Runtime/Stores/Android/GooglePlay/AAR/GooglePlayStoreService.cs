@@ -10,7 +10,7 @@ namespace UnityEngine.Purchasing
     class GooglePlayStoreService : IGooglePlayStoreService
     {
         const int k_NullProrationMode = -1;
-
+		
         IGoogleBillingClient m_BillingClient;
         bool m_IsConnectedToGoogle;
         bool m_HasConnectionAttempted;
@@ -22,6 +22,7 @@ namespace UnityEngine.Purchasing
         IGoogleQueryPurchasesService m_GoogleQueryPurchasesService;
         IGooglePriceChangeService m_GooglePriceChangeService;
         IGoogleLastKnownProductService m_GoogleLastKnownProductService;
+		IBillingClientStateListener m_billingClientStateListener;
 
         internal GooglePlayStoreService(
             IGoogleBillingClient billingClient,
@@ -48,6 +49,7 @@ namespace UnityEngine.Purchasing
         {
             billingClientStateListener.RegisterOnConnected(OnConnected);
             billingClientStateListener.RegisterOnDisconnected(OnDisconnected);
+			m_billingClientStateListener = billingClientStateListener;
             m_BillingClient.StartConnection(billingClientStateListener);
         }
 
@@ -117,6 +119,10 @@ namespace UnityEngine.Purchasing
         public void Purchase(ProductDefinition product, Product oldProduct, int desiredProrationMode)
         {
 			UnityEngine.Debug.LogWarning("Is Connected " + m_IsConnectedToGoogle);
+			if (m_IsConnectedToGoogle)
+			{
+    			m_BillingClient.StartConnection(m_billingClientStateListener);
+			}
             m_GoogleLastKnownProductService.SetLastKnownProductId(product.storeSpecificId);
             m_GooglePurchaseService.Purchase(product, oldProduct, desiredProrationMode);
         }
