@@ -53,6 +53,7 @@ namespace UnityEngine.Purchasing
 
         void OnConnected()
         {
+			UnityEngine.Debug.LogWarning("CONNECTED");
             m_HasConnectionAttempted = true;
             m_IsConnectedToGoogle = true;
             DequeueQueryProducts();
@@ -86,6 +87,7 @@ namespace UnityEngine.Purchasing
 
         void OnDisconnected()
         {
+			UnityEngine.Debug.LogWarning("Disconnected");
             m_HasConnectionAttempted = true;
             m_IsConnectedToGoogle = false;
             DequeueQueryProducts();
@@ -147,6 +149,7 @@ namespace UnityEngine.Purchasing
 
         public void EndConnection()
         {
+			UnityEngine.Debug.LogWarning("End CONNECTION");
             m_IsConnectedToGoogle = false;
             m_BillingClient.EndConnection();
         }
