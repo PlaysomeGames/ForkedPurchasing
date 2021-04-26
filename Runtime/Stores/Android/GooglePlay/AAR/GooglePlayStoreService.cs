@@ -116,6 +116,7 @@ namespace UnityEngine.Purchasing
 
         public void Purchase(ProductDefinition product, Product oldProduct, int desiredProrationMode)
         {
+			UnityEngine.Debug.LogWarning("Is Connected " + m_IsConnectedToGoogle);
             m_GoogleLastKnownProductService.SetLastKnownProductId(product.storeSpecificId);
             m_GooglePurchaseService.Purchase(product, oldProduct, desiredProrationMode);
         }
