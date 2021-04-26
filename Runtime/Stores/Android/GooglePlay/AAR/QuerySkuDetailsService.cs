@@ -117,6 +117,8 @@ namespace UnityEngine.Purchasing
                 Debug.LogWarning("Response code " + billingResult.responseCode);
             }
 
+			Debug.LogWarning("Response message " + billingResult.debugMessage);
+
             if (m_NumberReceivedCallbacks >= k_RequiredNumberOfCallbacks)
             {
                 m_GoogleCachedQuerySkuDetailsService.AddCachedQueriedSkus(m_QueriedSkuDetails);
